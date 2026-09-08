@@ -37,7 +37,7 @@
         .particle-field { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
         .particle { position: absolute; width: var(--size, 3px); height: var(--size, 3px); border-radius: 50%; background: var(--gold-bright); box-shadow: 0 0 6px 1px var(--gold), 0 0 14px 3px rgba(59, 130, 246, .5); left: var(--x); top: 100%; opacity: 0; animation: rise var(--dur, 14s) linear infinite; animation-delay: var(--delay, 0s); }
         @keyframes rise { 0% { transform: translateY(0) translateX(0); opacity: 0; } 8% { opacity: .9; } 50% { transform: translateY(-50vh) translateX(var(--drift, 20px)); } 92% { opacity: .7; } 100% { transform: translateY(-105vh) translateX(calc(var(--drift, 20px) * -1)); opacity: 0; } }
-        .container { max-width: 1280px; width: 100%; padding: 0 24px; position: relative; z-index: 2; padding-bottom: 60px; }
+        .container { max-width: 1280px; width: 100%; padding: 0 20px; position: relative; z-index: 2; padding-bottom: 60px; }
         .stats-bar { display: flex; gap: 3rem; margin-top: 2.6rem; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease .48s forwards; }
         .stat { display: flex; flex-direction: column; gap: 2px; }
         .stat .num { font-family: var(--display); font-size: 1.8rem; font-weight: 700; letter-spacing: -.5px; background: linear-gradient(120deg, var(--gold-bright), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 14px rgba(59, 130, 246, .3)); }
@@ -155,7 +155,7 @@
         .community-section h3 .highlight { background: linear-gradient(115deg, var(--gold-deep), var(--gold-bright)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-style: italic; }
         .community-sub { color: #8aa4ff; max-width: 540px; margin: 0 auto 2.8rem; font-size: 1rem; line-height: 1.7; }
         .community-stats { display: flex; justify-content: center; gap: 3.5rem; margin-bottom: 3.2rem; flex-wrap: wrap; }
-        .showcase-video { width: calc(100vw - 48px); margin-left: calc(50% - 50vw + 24px); margin-right: calc(50% - 50vw + 24px); max-width: none; padding: 60px 40px; background: linear-gradient(150deg, rgba(15, 23, 42, 0.8), rgba(5, 7, 20, 0.95)); border: 1px solid var(--gold-line); border-radius: 32px; min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .7), 0 0 60px rgba(59, 130, 246, .1); }
+        .showcase-video { width: 100%; max-width: 1200px; margin: 0 auto; padding: 60px 40px; background: linear-gradient(150deg, rgba(15, 23, 42, 0.8), rgba(5, 7, 20, 0.95)); border: 1px solid var(--gold-line); border-radius: 32px; min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .7), 0 0 60px rgba(59, 130, 246, .1); }
         .showcase-video video, .showcase-video iframe { width: 100%; max-height: 600px; border-radius: 16px; border: none; display: block; }
         .showcase-video .coming-soon { font-family: var(--display); font-size: 3.2rem; font-weight: 800; color: var(--gold-bright); text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 30px rgba(59, 130, 246, .6), 0 0 60px rgba(59, 130, 246, .3); line-height: 1.3; text-align: center; padding: 20px; }
         .community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
@@ -197,7 +197,7 @@
         #threatOverlay .message { font-size: 20px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; max-width: 600px; line-height: 1.6; text-shadow: 0 0 20px red; }
         @keyframes flash { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 1; } }
 
-        /* Device popup styles */
+        /* Device popup */
         .device-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity .3s; }
         .device-popup-overlay.show { opacity: 1; visibility: visible; }
         .device-popup { background: linear-gradient(160deg, #0f172a, #0b1220); border: 1px solid var(--gold-line); border-radius: 28px; padding: 40px 32px; max-width: 420px; width: 90%; text-align: center; box-shadow: 0 30px 80px -20px rgba(0,0,0,0.9), 0 0 50px rgba(59,130,246,0.15); transform: scale(0.9); transition: transform .3s; }
@@ -211,37 +211,51 @@
         .device-cancel { background: none; border: none; color: #556b8a; font-family: var(--mono); font-size: 13px; cursor: pointer; transition: color .3s; }
         .device-cancel:hover { color: var(--gold-bright); }
 
-        /* Responsive tweaks */
+        /* RESPONSIVE MOBILE/FULL */
         @media (max-width: 768px) {
+            .container { padding: 0 16px; }
             .nav { flex-direction: column; align-items: center; gap: 1rem; padding: 20px 0; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 0.8rem; font-size: 11px; }
             .nav-links a { font-size: 11px; }
             .nav-links .btn-outline { padding: 8px 16px; font-size: 12px; }
             .hero { padding: 40px 0; gap: 2rem; }
-            .hero-left h1 { font-size: 2.6rem; }
-            .stats-bar { justify-content: center; gap: 1.5rem; }
+            .hero-left h1 { font-size: 2.4rem; letter-spacing: -1px; }
+            .hero-left p { font-size: 1rem; margin-bottom: 1.8rem; }
+            .stats-bar { justify-content: center; gap: 1.5rem; margin-top: 1.8rem; }
+            .stats-bar .num { font-size: 1.4rem; }
+            .mockup-wrap { max-width: 100%; margin: 0 auto; }
+            .cookie-card { padding: 18px 16px; border-radius: 24px; }
             .about-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
             .about-copy h3 { font-size: 2rem; }
+            .about-copy p { margin-left: auto; margin-right: auto; }
             .about-values { gap: 1rem; }
             .value-card { text-align: left; }
             .features-section h3, .community-section h3 { font-size: 2.2rem; }
-            .showcase-video { width: 100%; margin-left: 0; margin-right: 0; padding: 24px 12px; border-radius: 20px; min-height: 200px; }
+            .feature-card { padding: 24px 18px; }
+            .community-card { padding: 24px 18px; }
+            .showcase-video { width: 100%; padding: 24px 16px; border-radius: 20px; min-height: 220px; }
             .showcase-video .coming-soon { font-size: 1.8rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-            .footer-brand p { margin: 14px auto; }
+            .footer-brand p { margin: 14px auto; max-width: 280px; }
             .footer-socials { justify-content: center; }
             .footer-col { align-items: center; }
+            .footer-bottom { font-size: 11px; padding: 18px 0; }
         }
         @media (max-width: 480px) {
             .hero-left h1 { font-size: 2rem; }
+            .hero-eyebrow { font-size: 10px; padding: 4px 10px 4px 4px; }
+            .btn-primary { padding: 15px 36px; font-size: 14px; }
+            .stat .num { font-size: 1.2rem; }
+            .stat .label { font-size: 10px; }
             .device-popup { padding: 28px 20px; }
             .device-popup h3 { font-size: 1.6rem; }
-            .device-btn { padding: 14px 18px; font-size: 14px; }
+            .device-btn { padding: 14px 18px; font-size: 14px; min-width: 120px; }
+            .device-options { gap: 10px; }
         }
     </style>
 </head>
 <body>
-    <!-- Background layers, particles, etc. -->
+    <!-- Background layers -->
     <div class="scroll-progress" id="scrollProgress"></div>
     <div class="cursor-glow" id="cursorGlow"></div>
     <div class="bg-grid"></div>
@@ -252,7 +266,6 @@
     <div class="bg-vignette"></div>
     <div class="particle-field" id="particleField"></div>
     <div class="container">
-        <!-- Navigation -->
         <nav class="nav">
             <div class="logo"><div class="logo-icon">VX</div><h2>VORTEX</h2></div>
             <div class="nav-links">
@@ -264,7 +277,6 @@
                 <a href="https://loot-link.com/s?OcqajUzG" target="_blank" class="btn-outline">Get Key</a>
             </div>
         </nav>
-        <!-- Hero -->
         <section class="hero">
             <div class="hero-left">
                 <div class="hero-eyebrow"><span class="dot"></span> Browser Extension · v2.0</div>
@@ -310,7 +322,6 @@
                 </div>
             </div>
         </section>
-        <!-- Features, About, Community (unchanged) -->
         <div class="glow-divider"></div>
         <section class="features-section" id="features">
             <h3><span class="highlight">Built</span> for speed & privacy</h3>
@@ -362,15 +373,14 @@
             <div class="footer-bottom"><span>VORTEX</span> © 2026 · <span id="visitorCount">0</span> Visitors</div>
         </div>
     </footer>
-
-    <!-- Reroute overlay -->
     <div class="reroute-overlay" id="rerouteOverlay">
         <div class="reroute-core"><div class="reroute-ring"></div><div class="reroute-ring reroute-ring-2"></div><div class="reroute-glyph">VX</div></div>
         <p class="reroute-text">Rerouting to <span id="rerouteDest">destination</span><span class="reroute-dots"><span>.</span><span>.</span><span>.</span></span></p>
         <div class="reroute-bar"><div class="reroute-bar-fill" id="rerouteBarFill"></div></div>
     </div>
-
-    <!-- Device popup (hidden by default) -->
+    <div id="threatOverlay">
+        <div class="message" id="threatMessage"></div>
+    </div>
     <div class="device-popup-overlay" id="devicePopup">
         <div class="device-popup">
             <h3>Choose your device</h3>
@@ -382,12 +392,6 @@
             <button class="device-cancel" id="deviceCancelBtn">✕ Skip</button>
         </div>
     </div>
-
-    <!-- Threat overlay -->
-    <div id="threatOverlay">
-        <div class="message" id="threatMessage"></div>
-    </div>
-
     <script>
         // ========== INSPECTION BLOCK ==========
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); showThreat(); });
@@ -411,27 +415,22 @@
         if (getExtensionBtn) {
             getExtensionBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                // Reliable detection attempt
                 const ua = navigator.userAgent;
                 const mobileRegex = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|BlackBerry/i;
                 const isMobileUA = mobileRegex.test(ua);
                 const touchPoints = navigator.maxTouchPoints || 0;
                 const isTablet = /iPad|Tablet/i.test(ua) || (touchPoints > 1 && /Macintosh/.test(ua));
                 const isMobileDevice = isMobileUA || (touchPoints > 1 && window.innerWidth <= 1024);
-                const isPC = !isMobileDevice && !isTablet; // default to PC
-
-                // If detection is certain (UA has relevant hints), redirect directly
+                const isPC = !isMobileDevice && !isTablet;
                 if (isMobileDevice || (isPC && !isMobileUA && /Windows|Macintosh|Linux|X11/i.test(ua) && touchPoints === 0)) {
                     const dest = isMobileDevice ? 'https://boostylink.com/329aF3iE' : 'https://boostylink.com/d8QtRfbs';
                     triggerRedirect(dest, isMobileDevice ? 'Mobile Store' : 'Desktop Store');
                 } else {
-                    // Cannot auto-detect → show popup
                     document.getElementById('devicePopup').classList.add('show');
                 }
             });
         }
 
-        // ========== DEVICE POPUP ACTIONS ==========
         document.getElementById('deviceMobileBtn').addEventListener('click', function() {
             window.location.href = 'https://boostylink.com/329aF3iE';
         });
@@ -442,7 +441,6 @@
             document.getElementById('devicePopup').classList.remove('show');
         });
 
-        // ========== REDIRECT ANIMATION (reroute overlay) ==========
         function triggerRedirect(dest, label) {
             const overlay = document.getElementById('rerouteOverlay');
             const destText = document.getElementById('rerouteDest');
