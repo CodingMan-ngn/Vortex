@@ -169,7 +169,11 @@
         .showcase-admin-badge { display: none; font-family: var(--mono); font-size: 10px; letter-spacing: 0.5px; padding: 4px 10px; border-radius: 50px; background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.35); color: #fbbf24; }
         .showcase-admin-badge.show { display: inline-block; }
         .showcase-count { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 1px; padding: 6px 14px; border: 1px solid var(--gold-line); border-radius: 50px; background: rgba(59, 130, 246, .05); }
-        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; position: relative; z-index: 1; }
+        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; position: relative; z-index: 1; }
+        .showcase-grid.single { grid-template-columns: 1fr; }
+        .showcase-grid.single .showcase-video-card { aspect-ratio: 2.4 / 1; }
+        .showcase-grid.duo { grid-template-columns: 1fr 1fr; }
+        .showcase-grid.duo .showcase-video-card { aspect-ratio: 16 / 9; }
         .showcase-video-card { position: relative; border-radius: 18px; overflow: hidden; cursor: pointer; border: 1px solid rgba(59, 130, 246, .15); background: #0a0f1e; aspect-ratio: 16 / 9; transition: transform .3s, border-color .3s, box-shadow .3s; }
         .showcase-video-card:hover { transform: translateY(-4px); border-color: rgba(59, 130, 246, .45); box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .8), 0 0 30px rgba(59, 130, 246, .2); }
         .showcase-video-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
@@ -182,6 +186,11 @@
         .showcase-meta { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 14px; z-index: 2; text-align: left; }
         .showcase-meta-title { font-family: var(--body); font-size: 13px; font-weight: 600; color: #eef1fb; line-height: 1.35; margin-bottom: 3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .showcase-meta-channel { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.5px; }
+        .showcase-grid.single .showcase-play { width: 76px; height: 76px; }
+        .showcase-grid.single .showcase-play svg { width: 28px; height: 28px; }
+        .showcase-grid.single .showcase-meta { padding: 20px 24px; }
+        .showcase-grid.single .showcase-meta-title { font-size: 18px; -webkit-line-clamp: 1; margin-bottom: 4px; }
+        .showcase-grid.single .showcase-meta-channel { font-size: 11px; }
         .showcase-empty { grid-column: 1 / -1; padding: 60px 30px; text-align: center; border: 1px dashed rgba(59, 130, 246, .25); border-radius: 18px; background: rgba(0, 0, 0, .2); }
         .showcase-empty-icon { width: 60px; height: 60px; margin: 0 auto 16px; border-radius: 50%; background: rgba(59, 130, 246, .1); display: flex; align-items: center; justify-content: center; }
         .showcase-empty-icon svg { width: 26px; height: 26px; fill: none; stroke: var(--gold-bright); stroke-width: 1.8; }
@@ -261,7 +270,7 @@
         .dm-cancel:hover { color: var(--gold-bright); }
         .dm-hint { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(59, 130, 246, 0.08); font-size: 11px; color: #4a5b7a; font-family: var(--mono); letter-spacing: 0.5px; line-height: 1.6; }
 
-        /* Admin panel (showcase editor) */
+        /* Admin panel */
         .admin-panel-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px); z-index: 100002; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; padding: 20px; }
         .admin-panel-overlay.show { opacity: 1; visibility: visible; }
         .admin-panel { background: linear-gradient(160deg, #0f172a, #0b1220); border: 1px solid rgba(251, 191, 36, 0.35); border-radius: 24px; padding: 32px 28px; max-width: 560px; width: 100%; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.9), 0 0 60px rgba(251, 191, 36, 0.15); transform: scale(0.92) translateY(20px); transition: transform 0.35s cubic-bezier(.2, .8, .2, 1); position: relative; overflow: hidden; }
@@ -311,8 +320,13 @@
             .community-card { padding: 24px 18px; }
             .showcase-panel { padding: 28px 20px; border-radius: 22px; }
             .showcase-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .showcase-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .showcase-grid.single .showcase-video-card { aspect-ratio: 16 / 9; }
+            .showcase-grid.duo { grid-template-columns: 1fr; }
             .showcase-title-text h4 { font-size: 1.1rem; }
+            .showcase-grid.single .showcase-meta { padding: 12px 14px; }
+            .showcase-grid.single .showcase-meta-title { font-size: 14px; }
+            .showcase-grid.single .showcase-play { width: 60px; height: 60px; }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
             .footer-brand p { margin: 14px auto; max-width: 280px; }
             .footer-socials { justify-content: center; }
@@ -336,7 +350,6 @@
             .dm-icon { width: 64px; height: 64px; }
             .dm-icon svg { width: 34px; height: 34px; }
             .dm-command { font-size: 0.9rem; padding: 12px 18px; }
-            .showcase-grid { grid-template-columns: 1fr; }
             .admin-btn-row { flex-direction: column; }
         }
     </style>
@@ -481,7 +494,6 @@
         <div class="message" id="threatMessage"></div>
     </div>
 
-    <!-- Discord modal -->
     <div class="discord-modal-overlay" id="discordModal">
         <div class="discord-modal">
             <div class="dm-icon">
@@ -506,7 +518,6 @@
         </div>
     </div>
 
-    <!-- Video lightbox -->
     <div class="video-lightbox" id="videoLightbox">
         <div class="video-lightbox-inner">
             <button class="video-lightbox-close" id="videoLightboxClose" aria-label="Close">✕</button>
@@ -514,7 +525,6 @@
         </div>
     </div>
 
-    <!-- Admin panel (showcase editor) -->
     <div class="admin-panel-overlay" id="adminPanel">
         <div class="admin-panel">
             <span class="admin-badge">🛠 Showcase Admin</span>
@@ -542,33 +552,15 @@
         </div>
     </div>
 
-    <!-- Toast for admin feedback -->
     <div class="admin-toast" id="adminToast">Saved</div>
 
     <script>
-        /* ============================================================
-           ✏️  DEFAULT SHOWCASE VIDEOS
-           These are used when no localStorage override is set.
-           Edit this list to set the defaults shipped to users.
-           ============================================================ */
-        const SHOWCASE_VIDEOS = [
-            // {
-            //     id: "dQw4w9WgXcQ",
-            //     title: "How to install VORTEX in 60 seconds",
-            //     channel: "TJ_Techs"
-            // },
-        ];
+        /* Default videos — used when no localStorage override is set */
+        const SHOWCASE_VIDEOS = [];
 
-        /* ============================================================
-           Admin panel settings — click VX logo N times to open
-           ============================================================ */
         const ADMIN_LOGO_CLICKS = 5;
         const ADMIN_CLICK_WINDOW_MS = 2000;
         const SHOWCASE_STORAGE_KEY = 'vortex_showcase_videos';
-
-        /* ============================================================
-           DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING
-           ============================================================ */
 
         // ---- Inspection block ----
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); showThreat(); });
@@ -604,7 +596,7 @@
             if (e.target === this) closeDiscordModal();
         });
 
-        // ---- Toast helper ----
+        // ---- Toast ----
         let toastTimer = null;
         function showToast(msg, danger) {
             const t = document.getElementById('adminToast');
@@ -615,7 +607,7 @@
             toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
         }
 
-        // ---- YouTube helpers ----
+        // ---- YouTube ID parser ----
         function extractYouTubeId(input) {
             if (!input) return null;
             const s = String(input).trim();
@@ -633,7 +625,7 @@
             return m ? m[1] : null;
         }
 
-        // ---- Storage helpers ----
+        // ---- Storage ----
         function readStoredVideos() {
             try {
                 const raw = localStorage.getItem(SHOWCASE_STORAGE_KEY);
@@ -662,6 +654,7 @@
             const count = document.getElementById('showcaseCount');
             const badge = document.getElementById('showcaseAdminBadge');
             grid.innerHTML = '';
+            grid.classList.remove('single', 'duo');
 
             const rawList = getActiveVideos() || [];
             const videos = rawList
@@ -674,6 +667,9 @@
 
             count.textContent = videos.length + (videos.length === 1 ? ' video' : ' videos');
             badge.classList.toggle('show', isAdminOverrideActive());
+
+            if (videos.length === 1) grid.classList.add('single');
+            else if (videos.length === 2) grid.classList.add('duo');
 
             if (videos.length === 0) {
                 grid.innerHTML = `
@@ -727,7 +723,7 @@
             if (e.target === this) closeVideoLightbox();
         });
 
-        // ---- Admin panel (open via 5 logo clicks) ----
+        // ---- Admin panel ----
         let logoClickCount = 0;
         let logoClickTimer = null;
 
@@ -783,7 +779,6 @@
                 .filter(Boolean);
 
             if (parsed.length === 0) {
-                // Save empty array → override with nothing (shows "coming soon")
                 writeStoredVideos([]);
                 renderShowcase();
                 showToast('Saved — no videos');
@@ -791,7 +786,6 @@
                 return;
             }
 
-            // Preserve custom titles if the same ID already existed in the current active list
             const existing = getActiveVideos() || [];
             const existingMap = {};
             for (const v of existing) {
@@ -823,7 +817,7 @@
             if (e.target === this) closeAdminPanel();
         });
 
-        // Escape closes any open overlay
+        // Escape closes overlays
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const dm = document.getElementById('discordModal');
@@ -886,7 +880,7 @@
             }, { passive: true });
         });
 
-        // ---- Init showcase ----
+        // ---- Init ----
         renderShowcase();
     </script>
 </body>
