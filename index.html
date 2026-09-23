@@ -169,16 +169,6 @@
         .community-card p { color: #8aa4ff; font-size: .9rem; line-height: 1.6; margin-bottom: 1.1rem; }
         .community-link { color: var(--gold-bright); text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .5px; text-transform: uppercase; border-bottom: 1px solid transparent; transition: .3s; }
         .community-link:hover { border-color: var(--gold-bright); text-shadow: 0 0 16px rgba(59, 130, 246, .6); }
-        .social-promo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1100px; margin: 40px auto 0; }
-        .social-promo { background: linear-gradient(150deg, rgba(15, 23, 42, .85), rgba(5, 7, 20, .95)); border: 1px solid var(--gold-line); border-radius: 24px; padding: 28px 20px; text-align: center; transition: .4s; opacity: 0; transform: translateY(20px); }
-        .social-promo.in-view { opacity: 1; transform: translateY(0); }
-        .social-promo:hover { border-color: rgba(59, 130, 246, .4); transform: translateY(-6px); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, .7), 0 0 30px rgba(59, 130, 246, .15); }
-        .social-promo .social-icon { width: 52px; height: 52px; margin: 0 auto 1rem; border-radius: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold-line); background: rgba(59, 130, 246, .1); }
-        .social-promo .social-icon svg { width: 24px; height: 24px; stroke: var(--gold-bright); fill: none; stroke-width: 1.6; }
-        .social-promo h5 { font-family: var(--display); font-size: 1.1rem; font-weight: 600; margin-bottom: .4rem; color: #f5ecd8; }
-        .social-promo p { color: #8aa4ff; font-size: .85rem; margin-bottom: 1rem; }
-        .social-promo a { color: var(--gold-bright); text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .5px; text-transform: uppercase; border-bottom: 1px solid transparent; transition: .3s; }
-        .social-promo a:hover { border-color: var(--gold-bright); text-shadow: 0 0 12px rgba(59, 130, 246, .6); }
         .site-footer { width: 100%; margin-top: 80px; border-top: 1px solid var(--gold-line); padding: 56px 0 0; position: relative; z-index: 2; display: flex; justify-content: center; }
         .footer-inner { padding-bottom: 0; }
         .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 2.5rem; padding-bottom: 40px; }
@@ -194,7 +184,7 @@
         .footer-bottom { border-top: 1px solid var(--gold-line); padding: 24px 0; text-align: center; font-family: var(--mono); color: #4a5b7a; font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
         .footer-bottom span { color: var(--gold-deep); }
 
-        /* Threat overlay (inspect blocker) */
+        /* Threat overlay */
         #threatOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 99999; justify-content: center; align-items: center; color: #ff2222; font-family: var(--mono); text-align: center; padding: 20px; box-sizing: border-box; }
         #threatOverlay.show { display: flex; animation: flash 0.3s linear; }
         #threatOverlay .message { font-size: 20px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; max-width: 600px; line-height: 1.6; text-shadow: 0 0 20px red; }
@@ -267,7 +257,6 @@
     </style>
 </head>
 <body>
-    <!-- Background layers -->
     <div class="scroll-progress" id="scrollProgress"></div>
     <div class="cursor-glow" id="cursorGlow"></div>
     <div class="bg-grid"></div>
@@ -368,16 +357,12 @@
                 <div class="community-card"><div class="community-icon"><svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></div><h4>GitHub</h4><p>Read the source, file issues, or open a PR.</p><a href="https://github.com/CodingMan-ngn/vortex-extension" target="_blank" class="community-link">View repo →</a></div>
                 <div class="community-card"><div class="community-icon"><svg viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg></div><h4>Feedback Board</h4><p>Suggest a feature or vote on what ships next.</p><a href="https://discord.gg/AABUzpzdU5" target="_blank" class="community-link">Open in Discord →</a></div>
             </div>
-            <div class="social-promo-grid">
-                <div class="social-promo"><div class="social-icon"><svg viewBox="0 0 24 24"><path d="M21 4.5a18 18 0 0 1-5 1.4 4 4 0 0 0-6.8 3.5 11 11 0 0 1-8-4 4 4 0 0 0 1.2 5.3 4 4 0 0 1-1.8-.5 4 4 0 0 0 3.2 4 4 4 0 0 1-1.8.1 4 4 0 0 0 3.7 2.8 8 8 0 0 1-5 1.7 8 8 0 0 1-1.2-.1 11 11 0 0 0 6.1 1.8c7.3 0 11.3-6 11.3-11.3v-.5a8 8 0 0 0 2-2 8 8 0 0 1-2.3.7z"/></svg></div><h5>Follow on TikTok</h5><p>Tips & updates</p><a href="https://www.tiktok.com/@leafhubeditz?is_from_webapp=1&sender_device=pc" target="_blank">@leafhubeditz →</a></div>
-                <div class="social-promo"><div class="social-icon"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg></div><h5>Watch on YouTube</h5><p>Guides & tutorials</p><a href="https://www.youtube.com/@TJ_Techs" target="_blank">TJ_Techs →</a></div>
-            </div>
         </section>
     </div>
     <footer class="site-footer">
         <div class="container footer-inner">
             <div class="footer-grid">
-                <div class="footer-brand"><div class="logo"><div class="logo-icon">VX</div><h2>VORTEX</h2></div><p>A fast, private browser extension — built small on purpose.</p><div class="footer-socials"><a href="https://discord.gg/AABUzpzdU5" target="_blank"><svg viewBox="0 0 24 24"><path d="M8 12h.01M16 12h.01M8.5 17c-3 0-5.5-3-5.5-7s2.5-8 9-8 9 4 9 8-2.5 7-5.5 7l-1-2h-5l-1 2z"/></svg></a><a href="https://www.tiktok.com/@leafhubeditz?is_from_webapp=1&sender_device=pc" target="_blank"><svg viewBox="0 0 24 24"><path d="M21 4.5a18 18 0 0 1-5 1.4 4 4 0 0 0-6.8 3.5 11 11 0 0 1-8-4 4 4 0 0 0 1.2 5.3 4 4 0 0 1-1.8-.5 4 4 0 0 0 3.2 4 4 4 0 0 1-1.8.1 4 4 0 0 0 3.7 2.8 8 8 0 0 1-5 1.7 8 8 0 0 1-1.2-.1 11 11 0 0 0 6.1 1.8c7.3 0 11.3-6 11.3-11.3v-.5a8 8 0 0 0 2-2 8 8 0 0 1-2.3.7z"/></svg></a><a href="https://www.youtube.com/@TJ_Techs" target="_blank"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg></a></div></div>
+                <div class="footer-brand"><div class="logo"><div class="logo-icon">VX</div><h2>VORTEX</h2></div><p>A fast, private browser extension — built small on purpose.</p><div class="footer-socials"><a href="https://discord.gg/AABUzpzdU5" target="_blank"><svg viewBox="0 0 24 24"><path d="M8 12h.01M16 12h.01M8.5 17c-3 0-5.5-3-5.5-7s2.5-8 9-8 9 4 9 8-2.5 7-5.5 7l-1-2h-5l-1 2z"/></svg></a><a href="https://github.com/CodingMan-ngn/vortex-extension" target="_blank"><svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></div></div>
                 <div class="footer-col"><h5>Product</h5><a href="#features">Features</a><a onclick="openDiscordModal()" style="cursor:pointer;">Download</a><a href="https://cookie-snap-key.pages.dev/" target="_blank">Get a key</a></div>
                 <div class="footer-col"><h5>Company</h5><a href="#about">About us</a><a href="#community">Community</a><a href="#">Docs</a></div>
                 <div class="footer-col"><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div>
@@ -386,12 +371,10 @@
         </div>
     </footer>
 
-    <!-- Inspect blocker -->
     <div id="threatOverlay">
         <div class="message" id="threatMessage"></div>
     </div>
 
-    <!-- Discord modal -->
     <div class="discord-modal-overlay" id="discordModal">
         <div class="discord-modal">
             <div class="dm-icon">
@@ -417,7 +400,7 @@
     </div>
 
     <script>
-        // ========== INSPECTION BLOCK ==========
+        // Inspection block
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); showThreat(); });
         document.addEventListener('keydown', function(e) {
             const k = e.key.toLowerCase();
@@ -434,7 +417,7 @@
             setTimeout(() => overlay.classList.remove('show'), 1200);
         }
 
-        // ========== DISCORD MODAL ==========
+        // Discord modal
         function openDiscordModal() {
             document.getElementById('discordModal').classList.add('show');
             document.body.style.overflow = 'hidden';
@@ -443,19 +426,13 @@
             document.getElementById('discordModal').classList.remove('show');
             document.body.style.overflow = '';
         }
-
-        // Get Extension button → Discord modal
         document.getElementById('getExtensionBtn').addEventListener('click', function(e) {
             e.preventDefault();
             openDiscordModal();
         });
-
-        // Close on overlay click
         document.getElementById('discordModal').addEventListener('click', function(e) {
             if (e.target === this) closeDiscordModal();
         });
-
-        // Escape key closes modal (but not before the threat overlay check)
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const modal = document.getElementById('discordModal');
@@ -463,7 +440,7 @@
             }
         });
 
-        // ========== SCROLL PROGRESS ==========
+        // Scroll progress
         const sp = document.getElementById('scrollProgress');
         window.addEventListener('scroll', () => {
             const h = document.documentElement.scrollHeight - window.innerHeight;
@@ -471,14 +448,14 @@
             sp.style.width = p + '%';
         }, { passive: true });
 
-        // ========== CURSOR GLOW ==========
+        // Cursor glow
         const cg = document.getElementById('cursorGlow');
         window.addEventListener('mousemove', (e) => {
             cg.style.setProperty('--cx', e.clientX + 'px');
             cg.style.setProperty('--cy', e.clientY + 'px');
         }, { passive: true });
 
-        // ========== PARTICLES ==========
+        // Particles
         const pf = document.getElementById('particleField');
         const particleCount = window.innerWidth < 768 ? 14 : 26;
         for (let i = 0; i < particleCount; i++) {
@@ -492,7 +469,7 @@
             pf.appendChild(p);
         }
 
-        // ========== SCROLL REVEAL ==========
+        // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((e, idx) => {
                 if (e.isIntersecting) {
@@ -501,9 +478,9 @@
                 }
             });
         }, { threshold: 0.15 });
-        document.querySelectorAll('.feature-card, .value-card, .community-card, .social-promo').forEach(el => observer.observe(el));
+        document.querySelectorAll('.feature-card, .value-card, .community-card').forEach(el => observer.observe(el));
 
-        // ========== FEATURE CARD SPOTLIGHT ==========
+        // Feature card spotlight
         document.querySelectorAll('.feature-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const r = card.getBoundingClientRect();
