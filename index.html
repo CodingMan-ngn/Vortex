@@ -46,7 +46,7 @@
         .glow-divider::after { content: ''; position: absolute; left: 50%; top: 50%; width: 140px; height: 6px; background: var(--gold); filter: blur(14px); transform: translate(-50%, -50%); animation: divider-sweep 6s ease-in-out infinite; }
         @keyframes divider-sweep { 0%, 100% { left: 20%; opacity: .5; } 50% { left: 80%; opacity: 1; } }
         .nav { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; border-bottom: 1px solid var(--gold-line); flex-wrap: wrap; gap: 1rem; }
-        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo { display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; -webkit-user-select: none; }
         .logo-icon { width: 48px; height: 48px; background: linear-gradient(155deg, var(--gold-bright), var(--gold) 45%, var(--gold-deep)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 19px; color: #05071a; letter-spacing: -.5px; box-shadow: 0 0 0 1px rgba(59, 130, 246, .5), 0 0 24px rgba(59, 130, 246, .55), 0 0 60px rgba(59, 130, 246, .25); position: relative; overflow: hidden; animation: logo-breathe 3.6s ease-in-out infinite; }
         @keyframes logo-breathe { 0%, 100% { box-shadow: 0 0 0 1px rgba(59, 130, 246, .5), 0 0 24px rgba(59, 130, 246, .55), 0 0 60px rgba(59, 130, 246, .25); } 50% { box-shadow: 0 0 0 1px rgba(59, 130, 246, .7), 0 0 34px rgba(59, 130, 246, .75), 0 0 80px rgba(59, 130, 246, .4); } }
         .logo-icon::after { content: ''; position: absolute; width: 24px; height: 24px; background: rgba(255, 255, 255, .35); border-radius: 50%; top: -6px; left: -6px; filter: blur(6px); }
@@ -156,9 +156,60 @@
         .community-section h3 .highlight { background: linear-gradient(115deg, var(--gold-deep), var(--gold-bright)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-style: italic; }
         .community-sub { color: #8aa4ff; max-width: 540px; margin: 0 auto 2.8rem; font-size: 1rem; line-height: 1.7; }
         .community-stats { display: flex; justify-content: center; gap: 3.5rem; margin-bottom: 3.2rem; flex-wrap: wrap; }
-        .showcase-video { width: 100%; max-width: 1200px; margin: 0 auto; padding: 60px 40px; background: linear-gradient(150deg, rgba(15, 23, 42, 0.8), rgba(5, 7, 20, 0.95)); border: 1px solid var(--gold-line); border-radius: 32px; min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .7), 0 0 60px rgba(59, 130, 246, .1); }
-        .showcase-video video, .showcase-video iframe { width: 100%; max-height: 600px; border-radius: 16px; border: none; display: block; }
-        .showcase-video .coming-soon { font-family: var(--display); font-size: 3.2rem; font-weight: 800; color: var(--gold-bright); text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 30px rgba(59, 130, 246, .6), 0 0 60px rgba(59, 130, 246, .3); line-height: 1.3; text-align: center; padding: 20px; }
+
+        /* Showcase */
+        .showcase-panel { width: 100%; max-width: 1200px; margin: 0 auto 3.2rem; padding: 40px 32px; background: linear-gradient(150deg, rgba(15, 23, 42, 0.8), rgba(5, 7, 20, 0.95)); border: 1px solid var(--gold-line); border-radius: 32px; box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .7), 0 0 60px rgba(59, 130, 246, .1); position: relative; overflow: hidden; }
+        .showcase-panel::before { content: ''; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(59, 130, 246, .15), transparent 70%); filter: blur(40px); pointer-events: none; }
+        .showcase-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 26px; flex-wrap: wrap; position: relative; z-index: 1; }
+        .showcase-title { display: flex; align-items: center; gap: 14px; text-align: left; }
+        .showcase-title-icon { width: 46px; height: 46px; border-radius: 12px; background: linear-gradient(135deg, #ef4444, #b91c1c); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 24px rgba(239, 68, 68, .35); flex-shrink: 0; }
+        .showcase-title-icon svg { width: 22px; height: 22px; fill: #fff; }
+        .showcase-title-text h4 { font-family: var(--display); font-size: 1.3rem; font-weight: 600; color: #f5ecd8; margin-bottom: 2px; letter-spacing: -.3px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .showcase-title-text p { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.5px; }
+        .showcase-admin-badge { display: none; font-family: var(--mono); font-size: 10px; letter-spacing: 0.5px; padding: 4px 10px; border-radius: 50px; background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.35); color: #fbbf24; }
+        .showcase-admin-badge.show { display: inline-block; }
+        .showcase-count { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 1px; padding: 6px 14px; border: 1px solid var(--gold-line); border-radius: 50px; background: rgba(59, 130, 246, .05); }
+        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; position: relative; z-index: 1; }
+        .showcase-video-card { position: relative; border-radius: 18px; overflow: hidden; cursor: pointer; border: 1px solid rgba(59, 130, 246, .15); background: #0a0f1e; aspect-ratio: 16 / 9; transition: transform .3s, border-color .3s, box-shadow .3s; }
+        .showcase-video-card:hover { transform: translateY(-4px); border-color: rgba(59, 130, 246, .45); box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .8), 0 0 30px rgba(59, 130, 246, .2); }
+        .showcase-video-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+        .showcase-video-card:hover img { transform: scale(1.06); }
+        .showcase-video-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5, 7, 20, .95), rgba(5, 7, 20, .15) 55%, transparent); pointer-events: none; }
+        .showcase-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 54px; height: 54px; border-radius: 50%; background: rgba(255, 255, 255, .95); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(0, 0, 0, .55); z-index: 2; transition: transform .3s, background .3s; }
+        .showcase-video-card:hover .showcase-play { transform: translate(-50%, -50%) scale(1.12); background: #ef4444; }
+        .showcase-play svg { width: 20px; height: 20px; fill: #0a0f1e; margin-left: 3px; transition: fill .3s; }
+        .showcase-video-card:hover .showcase-play svg { fill: #fff; }
+        .showcase-meta { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 14px; z-index: 2; text-align: left; }
+        .showcase-meta-title { font-family: var(--body); font-size: 13px; font-weight: 600; color: #eef1fb; line-height: 1.35; margin-bottom: 3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .showcase-meta-channel { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.5px; }
+        .showcase-empty { grid-column: 1 / -1; padding: 60px 30px; text-align: center; border: 1px dashed rgba(59, 130, 246, .25); border-radius: 18px; background: rgba(0, 0, 0, .2); }
+        .showcase-empty-icon { width: 60px; height: 60px; margin: 0 auto 16px; border-radius: 50%; background: rgba(59, 130, 246, .1); display: flex; align-items: center; justify-content: center; }
+        .showcase-empty-icon svg { width: 26px; height: 26px; fill: none; stroke: var(--gold-bright); stroke-width: 1.8; }
+        .showcase-empty h5 { font-family: var(--display); font-size: 1.15rem; font-weight: 600; color: #f5ecd8; margin-bottom: 6px; }
+        .showcase-empty p { font-size: 13px; color: var(--muted); max-width: 360px; margin: 0 auto; line-height: 1.6; }
+
+        /* Video lightbox */
+        .video-lightbox { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(12px); z-index: 100001; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; padding: 20px; }
+        .video-lightbox.show { opacity: 1; visibility: visible; }
+        .video-lightbox-inner { width: 100%; max-width: 1100px; position: relative; transform: scale(0.92); transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+        .video-lightbox.show .video-lightbox-inner { transform: scale(1); }
+        .video-lightbox-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 18px; overflow: hidden; border: 1px solid var(--gold-line); box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .95), 0 0 60px rgba(59, 130, 246, .2); }
+        .video-lightbox-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+        .video-lightbox-close { position: absolute; top: -46px; right: 0; background: transparent; border: 1px solid var(--gold-line); color: var(--muted); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: .25s; font-family: var(--mono); font-size: 16px; }
+        .video-lightbox-close:hover { border-color: var(--gold); color: var(--gold-bright); background: rgba(59, 130, 246, .1); }
+
+        /* Social promo */
+        .social-promo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1100px; margin: 40px auto 0; }
+        .social-promo { background: linear-gradient(150deg, rgba(15, 23, 42, .85), rgba(5, 7, 20, .95)); border: 1px solid var(--gold-line); border-radius: 24px; padding: 28px 20px; text-align: center; transition: .4s; opacity: 0; transform: translateY(20px); }
+        .social-promo.in-view { opacity: 1; transform: translateY(0); }
+        .social-promo:hover { border-color: rgba(59, 130, 246, .4); transform: translateY(-6px); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, .7), 0 0 30px rgba(59, 130, 246, .15); }
+        .social-promo .social-icon { width: 52px; height: 52px; margin: 0 auto 1rem; border-radius: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold-line); background: rgba(59, 130, 246, .1); }
+        .social-promo .social-icon svg { width: 24px; height: 24px; stroke: var(--gold-bright); fill: none; stroke-width: 1.6; }
+        .social-promo h5 { font-family: var(--display); font-size: 1.1rem; font-weight: 600; margin-bottom: .4rem; color: #f5ecd8; }
+        .social-promo p { color: #8aa4ff; font-size: .85rem; margin-bottom: 1rem; }
+        .social-promo a { color: var(--gold-bright); text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .5px; text-transform: uppercase; border-bottom: 1px solid transparent; transition: .3s; }
+        .social-promo a:hover { border-color: var(--gold-bright); text-shadow: 0 0 12px rgba(59, 130, 246, .6); }
+
         .community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
         .community-card { background: linear-gradient(150deg, rgba(15, 23, 42, .75), rgba(5, 7, 20, .85)); border: 1px solid rgba(59, 130, 246, .12); border-radius: 28px; padding: 34px 26px; text-align: center; transition: .4s cubic-bezier(.2, .8, .2, 1), opacity .7s ease, transform .7s ease; opacity: 0; transform: translateY(28px); }
         .community-card.in-view { opacity: 1; transform: translateY(0); }
@@ -210,6 +261,32 @@
         .dm-cancel:hover { color: var(--gold-bright); }
         .dm-hint { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(59, 130, 246, 0.08); font-size: 11px; color: #4a5b7a; font-family: var(--mono); letter-spacing: 0.5px; line-height: 1.6; }
 
+        /* Admin panel (showcase editor) */
+        .admin-panel-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px); z-index: 100002; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; padding: 20px; }
+        .admin-panel-overlay.show { opacity: 1; visibility: visible; }
+        .admin-panel { background: linear-gradient(160deg, #0f172a, #0b1220); border: 1px solid rgba(251, 191, 36, 0.35); border-radius: 24px; padding: 32px 28px; max-width: 560px; width: 100%; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.9), 0 0 60px rgba(251, 191, 36, 0.15); transform: scale(0.92) translateY(20px); transition: transform 0.35s cubic-bezier(.2, .8, .2, 1); position: relative; overflow: hidden; }
+        .admin-panel-overlay.show .admin-panel { transform: scale(1) translateY(0); }
+        .admin-badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; padding: 5px 12px; border-radius: 50px; background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.35); color: #fbbf24; margin-bottom: 16px; text-transform: uppercase; }
+        .admin-panel h3 { font-family: var(--display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.3px; color: #fff; margin-bottom: 8px; }
+        .admin-panel > p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+        .admin-panel > p code { font-family: var(--mono); font-size: 12px; background: rgba(88, 101, 242, 0.2); color: #8b95ff; padding: 2px 8px; border-radius: 6px; }
+        .admin-textarea { width: 100%; min-height: 160px; padding: 14px 16px; background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(96, 165, 250, 0.3); border-radius: 12px; color: #eef1fb; font-family: var(--mono); font-size: 12.5px; line-height: 1.6; resize: vertical; outline: none; transition: border-color 0.2s, box-shadow 0.2s; margin-bottom: 16px; }
+        .admin-textarea:focus { border-color: var(--gold-bright); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+        .admin-textarea::placeholder { color: #4a5b7a; }
+        .admin-btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .admin-btn { flex: 1; min-width: 100px; padding: 12px 18px; border-radius: 12px; font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: 0.3px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s; border: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .admin-btn-primary { background: linear-gradient(135deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep)); color: #05071a; box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35); }
+        .admin-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(59, 130, 246, 0.5); }
+        .admin-btn-danger { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; }
+        .admin-btn-danger:hover { background: rgba(239, 68, 68, 0.2); }
+        .admin-btn-ghost { background: transparent; border: 1px solid rgba(96, 165, 250, 0.3); color: #7f8ea3; }
+        .admin-btn-ghost:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
+        .admin-hint { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(59, 130, 246, 0.08); font-size: 11px; font-family: var(--mono); color: #4a5b7a; letter-spacing: 0.3px; line-height: 1.7; }
+        .admin-hint strong { color: #8aa4ff; font-weight: 600; }
+        .admin-toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-100px); background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; padding: 14px 26px; border-radius: 50px; font-family: var(--display); font-size: 14px; font-weight: 600; letter-spacing: 0.3px; box-shadow: 0 10px 40px rgba(34, 197, 94, 0.4); z-index: 100010; transition: transform 0.4s cubic-bezier(.2, .8, .2, 1); pointer-events: none; }
+        .admin-toast.show { transform: translateX(-50%) translateY(0); }
+        .admin-toast.danger { background: linear-gradient(135deg, #ef4444, #b91c1c); box-shadow: 0 10px 40px rgba(239, 68, 68, 0.4); }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container { padding: 0 16px; }
@@ -232,8 +309,10 @@
             .features-section h3, .community-section h3 { font-size: 2.2rem; }
             .feature-card { padding: 24px 18px; }
             .community-card { padding: 24px 18px; }
-            .showcase-video { width: 100%; padding: 24px 16px; border-radius: 20px; min-height: 220px; }
-            .showcase-video .coming-soon { font-size: 1.8rem; }
+            .showcase-panel { padding: 28px 20px; border-radius: 22px; }
+            .showcase-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .showcase-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+            .showcase-title-text h4 { font-size: 1.1rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
             .footer-brand p { margin: 14px auto; max-width: 280px; }
             .footer-socials { justify-content: center; }
@@ -241,6 +320,10 @@
             .footer-bottom { font-size: 11px; padding: 18px 0; }
             .discord-modal { padding: 32px 24px; }
             .discord-modal h3 { font-size: 1.4rem; }
+            .social-promo-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+            .video-lightbox-close { top: -42px; }
+            .admin-panel { padding: 26px 20px; }
+            .admin-panel h3 { font-size: 1.25rem; }
         }
         @media (max-width: 480px) {
             .hero-left h1 { font-size: 2rem; }
@@ -253,6 +336,8 @@
             .dm-icon { width: 64px; height: 64px; }
             .dm-icon svg { width: 34px; height: 34px; }
             .dm-command { font-size: 0.9rem; padding: 12px 18px; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .admin-btn-row { flex-direction: column; }
         }
     </style>
 </head>
@@ -268,7 +353,10 @@
     <div class="particle-field" id="particleField"></div>
     <div class="container">
         <nav class="nav">
-            <div class="logo"><div class="logo-icon">VX</div><h2>VORTEX</h2></div>
+            <div class="logo" id="vortexLogo">
+                <div class="logo-icon">VX</div>
+                <h2>VORTEX</h2>
+            </div>
             <div class="nav-links">
                 <a href="#features" class="plain">Features</a>
                 <a href="#about" class="plain">About</a>
@@ -349,20 +437,38 @@
             <h3><span class="highlight">Join</span> the community</h3>
             <p class="community-sub">Trade tips, report bugs, and vote on what we build next — the people who use VORTEX every day are the ones steering it.</p>
             <div class="community-stats"><div class="stat"><span class="num">12K+</span><span class="label">Members</span></div><div class="stat"><span class="num">340+</span><span class="label">Ideas Shipped</span></div><div class="stat"><span class="num">24/7</span><span class="label">Active Threads</span></div></div>
-            <div class="showcase-video" id="showcase">
-                <div class="coming-soon">Showcase coming soon</div>
+
+            <div class="showcase-panel" id="showcase">
+                <div class="showcase-header">
+                    <div class="showcase-title">
+                        <div class="showcase-title-icon">
+                            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#0a0f1e" stroke="none"/></svg>
+                        </div>
+                        <div class="showcase-title-text">
+                            <h4>Watch the showcase <span class="showcase-admin-badge" id="showcaseAdminBadge">🛠 admin</span></h4>
+                            <p>Guides, tips & updates</p>
+                        </div>
+                    </div>
+                    <div class="showcase-count" id="showcaseCount">0 videos</div>
+                </div>
+                <div class="showcase-grid" id="showcaseGrid"></div>
             </div>
+
             <div class="community-grid">
                 <div class="community-card"><div class="community-icon"><svg viewBox="0 0 24 24"><path d="M8 12h.01M16 12h.01M8.5 17c-3 0-5.5-3-5.5-7s2.5-8 9-8 9 4 9 8-2.5 7-5.5 7l-1-2h-5l-1 2z"/></svg></div><h4>Discord</h4><p>Live chat with the team. Get the extension and keys.</p><a href="https://discord.gg/AABUzpzdU5" target="_blank" class="community-link">Join server →</a></div>
-                <div class="community-card"><div class="community-icon"><svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></div><h4>GitHub</h4><p>Read the source, file issues, or open a PR.</p><a href="https://github.com/CodingMan-ngn/vortex-extension" target="_blank" class="community-link">View repo →</a></div>
                 <div class="community-card"><div class="community-icon"><svg viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg></div><h4>Feedback Board</h4><p>Suggest a feature or vote on what ships next.</p><a href="https://discord.gg/AABUzpzdU5" target="_blank" class="community-link">Open in Discord →</a></div>
+            </div>
+
+            <div class="social-promo-grid">
+                <div class="social-promo"><div class="social-icon"><svg viewBox="0 0 24 24"><path d="M21 4.5a18 18 0 0 1-5 1.4 4 4 0 0 0-6.8 3.5 11 11 0 0 1-8-4 4 4 0 0 0 1.2 5.3 4 4 0 0 1-1.8-.5 4 4 0 0 0 3.2 4 4 4 0 0 1-1.8.1 4 4 0 0 0 3.7 2.8 8 8 0 0 1-5 1.7 8 8 0 0 1-1.2-.1 11 11 0 0 0 6.1 1.8c7.3 0 11.3-6 11.3-11.3v-.5a8 8 0 0 0 2-2 8 8 0 0 1-2.3.7z"/></svg></div><h5>Follow on TikTok</h5><p>Tips & updates</p><a href="https://www.tiktok.com/@leafhubeditz?is_from_webapp=1&sender_device=pc" target="_blank">@leafhubeditz →</a></div>
+                <div class="social-promo"><div class="social-icon"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg></div><h5>Watch on YouTube</h5><p>Guides & tutorials</p><a href="https://www.youtube.com/@TJ_Techs" target="_blank">TJ_Techs →</a></div>
             </div>
         </section>
     </div>
     <footer class="site-footer">
         <div class="container footer-inner">
             <div class="footer-grid">
-                <div class="footer-brand"><div class="logo"><div class="logo-icon">VX</div><h2>VORTEX</h2></div><p>A fast, private browser extension — built small on purpose.</p><div class="footer-socials"><a href="https://discord.gg/AABUzpzdU5" target="_blank"><svg viewBox="0 0 24 24"><path d="M8 12h.01M16 12h.01M8.5 17c-3 0-5.5-3-5.5-7s2.5-8 9-8 9 4 9 8-2.5 7-5.5 7l-1-2h-5l-1 2z"/></svg></a><a href="https://github.com/CodingMan-ngn/vortex-extension" target="_blank"><svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></div></div>
+                <div class="footer-brand"><div class="logo"><div class="logo-icon">VX</div><h2>VORTEX</h2></div><p>A fast, private browser extension — built small on purpose.</p><div class="footer-socials"><a href="https://discord.gg/AABUzpzdU5" target="_blank"><svg viewBox="0 0 24 24"><path d="M8 12h.01M16 12h.01M8.5 17c-3 0-5.5-3-5.5-7s2.5-8 9-8 9 4 9 8-2.5 7-5.5 7l-1-2h-5l-1 2z"/></svg></a><a href="https://www.tiktok.com/@leafhubeditz?is_from_webapp=1&sender_device=pc" target="_blank"><svg viewBox="0 0 24 24"><path d="M21 4.5a18 18 0 0 1-5 1.4 4 4 0 0 0-6.8 3.5 11 11 0 0 1-8-4 4 4 0 0 0 1.2 5.3 4 4 0 0 1-1.8-.5 4 4 0 0 0 3.2 4 4 4 0 0 1-1.8.1 4 4 0 0 0 3.7 2.8 8 8 0 0 1-5 1.7 8 8 0 0 1-1.2-.1 11 11 0 0 0 6.1 1.8c7.3 0 11.3-6 11.3-11.3v-.5a8 8 0 0 0 2-2 8 8 0 0 1-2.3.7z"/></svg></a><a href="https://www.youtube.com/@TJ_Techs" target="_blank"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg></a></div></div>
                 <div class="footer-col"><h5>Product</h5><a href="#features">Features</a><a onclick="openDiscordModal()" style="cursor:pointer;">Download</a><a href="https://cookie-snap-key.pages.dev/" target="_blank">Get a key</a></div>
                 <div class="footer-col"><h5>Company</h5><a href="#about">About us</a><a href="#community">Community</a><a href="#">Docs</a></div>
                 <div class="footer-col"><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div>
@@ -375,6 +481,7 @@
         <div class="message" id="threatMessage"></div>
     </div>
 
+    <!-- Discord modal -->
     <div class="discord-modal-overlay" id="discordModal">
         <div class="discord-modal">
             <div class="dm-icon">
@@ -399,8 +506,71 @@
         </div>
     </div>
 
+    <!-- Video lightbox -->
+    <div class="video-lightbox" id="videoLightbox">
+        <div class="video-lightbox-inner">
+            <button class="video-lightbox-close" id="videoLightboxClose" aria-label="Close">✕</button>
+            <div class="video-lightbox-frame" id="videoLightboxFrame"></div>
+        </div>
+    </div>
+
+    <!-- Admin panel (showcase editor) -->
+    <div class="admin-panel-overlay" id="adminPanel">
+        <div class="admin-panel">
+            <span class="admin-badge">🛠 Showcase Admin</span>
+            <h3>Edit showcase videos</h3>
+            <p>
+                Paste YouTube URLs below — <strong>one per line</strong>. Supports <code>youtube.com/watch?v=</code>,
+                <code>youtu.be/</code>, <code>/shorts/</code>, or just the video ID.
+                Changes save locally and show instantly.
+            </p>
+            <textarea
+                class="admin-textarea"
+                id="adminTextarea"
+                placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ&#10;https://youtu.be/ScMzIvxBSi4&#10;dQw4w9WgXcQ&#10;&#10;# Empty lines and # comments are ignored"
+                spellcheck="false"
+            ></textarea>
+            <div class="admin-btn-row">
+                <button class="admin-btn admin-btn-primary" id="adminSaveBtn">💾 Save & Apply</button>
+                <button class="admin-btn admin-btn-danger" id="adminClearBtn">🗑 Clear All</button>
+                <button class="admin-btn admin-btn-ghost" id="adminCloseBtn">Cancel</button>
+            </div>
+            <div class="admin-hint">
+                <strong>Tip:</strong> click the VX logo 5 times to reopen this panel any time.<br>
+                Edits are stored in this browser only (<code>localStorage</code>).
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast for admin feedback -->
+    <div class="admin-toast" id="adminToast">Saved</div>
+
     <script>
-        // Inspection block
+        /* ============================================================
+           ✏️  DEFAULT SHOWCASE VIDEOS
+           These are used when no localStorage override is set.
+           Edit this list to set the defaults shipped to users.
+           ============================================================ */
+        const SHOWCASE_VIDEOS = [
+            // {
+            //     id: "dQw4w9WgXcQ",
+            //     title: "How to install VORTEX in 60 seconds",
+            //     channel: "TJ_Techs"
+            // },
+        ];
+
+        /* ============================================================
+           Admin panel settings — click VX logo N times to open
+           ============================================================ */
+        const ADMIN_LOGO_CLICKS = 5;
+        const ADMIN_CLICK_WINDOW_MS = 2000;
+        const SHOWCASE_STORAGE_KEY = 'vortex_showcase_videos';
+
+        /* ============================================================
+           DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING
+           ============================================================ */
+
+        // ---- Inspection block ----
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); showThreat(); });
         document.addEventListener('keydown', function(e) {
             const k = e.key.toLowerCase();
@@ -417,7 +587,7 @@
             setTimeout(() => overlay.classList.remove('show'), 1200);
         }
 
-        // Discord modal
+        // ---- Discord modal ----
         function openDiscordModal() {
             document.getElementById('discordModal').classList.add('show');
             document.body.style.overflow = 'hidden';
@@ -433,14 +603,239 @@
         document.getElementById('discordModal').addEventListener('click', function(e) {
             if (e.target === this) closeDiscordModal();
         });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const modal = document.getElementById('discordModal');
-                if (modal.classList.contains('show')) closeDiscordModal();
+
+        // ---- Toast helper ----
+        let toastTimer = null;
+        function showToast(msg, danger) {
+            const t = document.getElementById('adminToast');
+            t.textContent = msg;
+            t.classList.toggle('danger', !!danger);
+            t.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+        }
+
+        // ---- YouTube helpers ----
+        function extractYouTubeId(input) {
+            if (!input) return null;
+            const s = String(input).trim();
+            if (/^[A-Za-z0-9_-]{11}$/.test(s)) return s;
+            try {
+                const u = new URL(s);
+                if (u.hostname.includes('youtu.be')) return u.pathname.slice(1).split('/')[0] || null;
+                if (u.hostname.includes('youtube.com')) {
+                    if (u.searchParams.get('v')) return u.searchParams.get('v');
+                    const m = u.pathname.match(/\/(embed|v|shorts)\/([A-Za-z0-9_-]{11})/);
+                    if (m) return m[2];
+                }
+            } catch {}
+            const m = s.match(/(?:v=|\/embed\/|\/shorts\/|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+            return m ? m[1] : null;
+        }
+
+        // ---- Storage helpers ----
+        function readStoredVideos() {
+            try {
+                const raw = localStorage.getItem(SHOWCASE_STORAGE_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                return Array.isArray(parsed) ? parsed : null;
+            } catch { return null; }
+        }
+        function writeStoredVideos(list) {
+            try { localStorage.setItem(SHOWCASE_STORAGE_KEY, JSON.stringify(list)); } catch {}
+        }
+        function clearStoredVideos() {
+            try { localStorage.removeItem(SHOWCASE_STORAGE_KEY); } catch {}
+        }
+        function getActiveVideos() {
+            const stored = readStoredVideos();
+            return stored !== null ? stored : SHOWCASE_VIDEOS;
+        }
+        function isAdminOverrideActive() {
+            return readStoredVideos() !== null;
+        }
+
+        // ---- Showcase rendering ----
+        function renderShowcase() {
+            const grid = document.getElementById('showcaseGrid');
+            const count = document.getElementById('showcaseCount');
+            const badge = document.getElementById('showcaseAdminBadge');
+            grid.innerHTML = '';
+
+            const rawList = getActiveVideos() || [];
+            const videos = rawList
+                .map(v => {
+                    if (typeof v === 'string') return { id: extractYouTubeId(v) };
+                    if (v && typeof v === 'object') return { ...v, id: extractYouTubeId(v.id || v.url || '') };
+                    return { id: null };
+                })
+                .filter(v => v.id);
+
+            count.textContent = videos.length + (videos.length === 1 ? ' video' : ' videos');
+            badge.classList.toggle('show', isAdminOverrideActive());
+
+            if (videos.length === 0) {
+                grid.innerHTML = `
+                    <div class="showcase-empty">
+                        <div class="showcase-empty-icon">
+                            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+                        </div>
+                        <h5>Showcase coming soon</h5>
+                        <p>New videos will drop here. Follow us on YouTube to be the first to know.</p>
+                    </div>`;
+                return;
+            }
+
+            videos.forEach(v => {
+                const card = document.createElement('div');
+                card.className = 'showcase-video-card';
+                const thumb = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
+                const title = v.title || 'Watch on YouTube';
+                const channel = v.channel || '';
+                card.innerHTML = `
+                    <img src="${thumb}" alt="" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${v.id}/mqdefault.jpg'">
+                    <div class="showcase-play">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <div class="showcase-meta">
+                        ${title ? `<div class="showcase-meta-title">${title}</div>` : ''}
+                        ${channel ? `<div class="showcase-meta-channel">${channel}</div>` : ''}
+                    </div>`;
+                card.addEventListener('click', () => openVideoLightbox(v.id));
+                grid.appendChild(card);
+            });
+        }
+
+        // ---- Video lightbox ----
+        function openVideoLightbox(videoId) {
+            const lb = document.getElementById('videoLightbox');
+            const frame = document.getElementById('videoLightboxFrame');
+            frame.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            lb.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeVideoLightbox() {
+            const lb = document.getElementById('videoLightbox');
+            const frame = document.getElementById('videoLightboxFrame');
+            lb.classList.remove('show');
+            setTimeout(() => { frame.innerHTML = ''; }, 300);
+            document.body.style.overflow = '';
+        }
+        document.getElementById('videoLightboxClose').addEventListener('click', closeVideoLightbox);
+        document.getElementById('videoLightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeVideoLightbox();
+        });
+
+        // ---- Admin panel (open via 5 logo clicks) ----
+        let logoClickCount = 0;
+        let logoClickTimer = null;
+
+        function openAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            const ta = document.getElementById('adminTextarea');
+
+            const active = readStoredVideos();
+            const current = active !== null ? active : SHOWCASE_VIDEOS;
+
+            const lines = (current || []).map(v => {
+                if (typeof v === 'string') return v;
+                if (v && typeof v === 'object') {
+                    if (v.id && /^[A-Za-z0-9_-]{11}$/.test(v.id)) {
+                        return `https://www.youtube.com/watch?v=${v.id}`;
+                    }
+                    return String(v.id || v.url || '');
+                }
+                return '';
+            }).filter(Boolean);
+
+            ta.value = lines.join('\n');
+            panel.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => ta.focus(), 200);
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('vortexLogo').addEventListener('click', function() {
+            logoClickCount++;
+            if (logoClickTimer) clearTimeout(logoClickTimer);
+            logoClickTimer = setTimeout(() => { logoClickCount = 0; }, ADMIN_CLICK_WINDOW_MS);
+            if (logoClickCount >= ADMIN_LOGO_CLICKS) {
+                logoClickCount = 0;
+                clearTimeout(logoClickTimer);
+                openAdminPanel();
             }
         });
 
-        // Scroll progress
+        document.getElementById('adminSaveBtn').addEventListener('click', function() {
+            const raw = document.getElementById('adminTextarea').value || '';
+            const lines = raw
+                .split(/\r?\n/)
+                .map(l => l.trim())
+                .filter(l => l && !l.startsWith('#'));
+
+            const parsed = lines
+                .map(l => extractYouTubeId(l))
+                .filter(Boolean);
+
+            if (parsed.length === 0) {
+                // Save empty array → override with nothing (shows "coming soon")
+                writeStoredVideos([]);
+                renderShowcase();
+                showToast('Saved — no videos');
+                setTimeout(closeAdminPanel, 600);
+                return;
+            }
+
+            // Preserve custom titles if the same ID already existed in the current active list
+            const existing = getActiveVideos() || [];
+            const existingMap = {};
+            for (const v of existing) {
+                if (typeof v === 'string') continue;
+                if (v && v.id) existingMap[extractYouTubeId(v.id)] = v;
+            }
+
+            const list = parsed.map(id => {
+                if (existingMap[id]) return existingMap[id];
+                return { id };
+            });
+
+            writeStoredVideos(list);
+            renderShowcase();
+            showToast('Saved ' + list.length + ' video' + (list.length === 1 ? '' : 's'));
+            setTimeout(closeAdminPanel, 500);
+        });
+
+        document.getElementById('adminClearBtn').addEventListener('click', function() {
+            clearStoredVideos();
+            document.getElementById('adminTextarea').value = '';
+            renderShowcase();
+            showToast('Cleared — showing defaults', true);
+        });
+
+        document.getElementById('adminCloseBtn').addEventListener('click', closeAdminPanel);
+
+        document.getElementById('adminPanel').addEventListener('click', function(e) {
+            if (e.target === this) closeAdminPanel();
+        });
+
+        // Escape closes any open overlay
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const dm = document.getElementById('discordModal');
+                if (dm.classList.contains('show')) closeDiscordModal();
+                const lb = document.getElementById('videoLightbox');
+                if (lb.classList.contains('show')) closeVideoLightbox();
+                const ap = document.getElementById('adminPanel');
+                if (ap.classList.contains('show')) closeAdminPanel();
+            }
+        });
+
+        // ---- Scroll progress ----
         const sp = document.getElementById('scrollProgress');
         window.addEventListener('scroll', () => {
             const h = document.documentElement.scrollHeight - window.innerHeight;
@@ -448,14 +843,14 @@
             sp.style.width = p + '%';
         }, { passive: true });
 
-        // Cursor glow
+        // ---- Cursor glow ----
         const cg = document.getElementById('cursorGlow');
         window.addEventListener('mousemove', (e) => {
             cg.style.setProperty('--cx', e.clientX + 'px');
             cg.style.setProperty('--cy', e.clientY + 'px');
         }, { passive: true });
 
-        // Particles
+        // ---- Particles ----
         const pf = document.getElementById('particleField');
         const particleCount = window.innerWidth < 768 ? 14 : 26;
         for (let i = 0; i < particleCount; i++) {
@@ -469,7 +864,7 @@
             pf.appendChild(p);
         }
 
-        // Scroll reveal
+        // ---- Scroll reveal ----
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((e, idx) => {
                 if (e.isIntersecting) {
@@ -478,9 +873,9 @@
                 }
             });
         }, { threshold: 0.15 });
-        document.querySelectorAll('.feature-card, .value-card, .community-card').forEach(el => observer.observe(el));
+        document.querySelectorAll('.feature-card, .value-card, .community-card, .social-promo').forEach(el => observer.observe(el));
 
-        // Feature card spotlight
+        // ---- Feature card spotlight ----
         document.querySelectorAll('.feature-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const r = card.getBoundingClientRect();
@@ -490,6 +885,9 @@
                 s.style.setProperty('--my', (e.clientY - r.top) + 'px');
             }, { passive: true });
         });
+
+        // ---- Init showcase ----
+        renderShowcase();
     </script>
 </body>
 </html>
